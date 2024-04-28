@@ -1,0 +1,139 @@
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ユーザー情報入力</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #userInfoForm {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left; /* 左寄せに変更 */
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        input {
+            width: calc(100% - 16px);
+            padding: 8px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="button"] {
+            cursor: pointer;
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+        }
+
+        #confirmationMessage {
+            display: none;
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        #returnButton {
+            display: none;
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form id="userInfoForm">
+        <h1>ユーザー情報入力</h1>
+
+        <!-- 名前の入力フィールド -->
+        <label for="name">名前:</label>
+        <input type="text" id="name" name="name" required>
+
+        <!-- 学年の入力フィールド -->
+        <label for="grade">学年:</label>
+        <input type="text" id="grade" name="grade" required>
+
+        <!-- 電話番号の入力フィールド -->
+        <label for="phoneNumber">電話番号:</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber" required>
+
+        <!-- メールアドレスの入力フィールド -->
+        <label for="email">メールアドレス:</label>
+        <input type="email" id="email" name="email" required>
+
+        <!-- 送信ボタン -->
+        <input type="button" value="情報を送信" onclick="submitForm()" id="submitButton">
+
+        <!-- 送信完了メッセージ -->
+        <p id="confirmationMessage" class="hidden">情報が正常に送信されました。</p>
+
+        <!-- 元に戻るボタン -->
+        <input type="button" value="元に戻る" onclick="goBack()" id="returnButton" class="hidden">
+    </form>
+
+    <script>
+        function submitForm() {
+            // フォームデータの取得
+            var name = document.getElementById('name').value;
+            var grade = document.getElementById('grade').value;
+            var phoneNumber = document.getElementById('phoneNumber').value;
+            var email = document.getElementById('email').value;
+
+            // 送信完了メッセージを表示
+            document.getElementById('confirmationMessage').style.display = 'block';
+
+            // 送信ボタンを非表示にし、元に戻るボタンを表示
+            document.getElementById('submitButton').style.display = 'none';
+            document.getElementById('returnButton').style.display = 'inline-block';
+
+            // アラートを表示
+            alert('この情報は外部に漏洩しました\n名前: ' + name + '\n学年: ' + grade + '\n電話番号: ' + phoneNumber + '\nメールアドレス: ' + email);
+        }
+
+        function goBack() {
+            // 元に戻るボタンがクリックされたときの処理
+            // ここでは送信完了メッセージを非表示にし、送信ボタンを表示
+            document.getElementById('confirmationMessage').style.display = 'none';
+            document.getElementById('submitButton').style.display = 'inline-block';
+            document.getElementById('returnButton').style.display = 'none';
+        }
+    </script>
+
+</body>
+
+</html>
